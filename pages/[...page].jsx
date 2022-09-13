@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import DefaultErrorPage from "next/error";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BuilderComponent,
   builder,
@@ -54,7 +54,6 @@ export default function Page({ page }) {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
-  const [showUserCreate, setShowUserCreate] = useState(false);
   //  This flag indicates if you are viewing the page in the Builder editor.
   const login = () => {
     const email = document.getElementById("email");
@@ -85,6 +84,9 @@ export default function Page({ page }) {
         console.log("ERR", err);
       });
   };
+  const createAnotherUser = () => {
+    setIsLoggedIn(false);
+  };
   const isPreviewing = useIsPreviewing();
 
   if (router.isFallback) {
@@ -110,6 +112,7 @@ export default function Page({ page }) {
         context={{
           login,
           createUser,
+          createAnotherUser,
         }}
       />
       <div style={{ textAlign: "center" }}>
