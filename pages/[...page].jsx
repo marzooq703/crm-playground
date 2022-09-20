@@ -155,16 +155,23 @@ Builder.registerComponent(MyCustomComponent, {
   ],
 });
 
-const Heading = (props) => (
-  <div style={{ textAlign: "center" }}>
-    <h1>{props.title}</h1>
-  </div>
-);
+const Heading = (props) => {
+  const { title, textAlign = "center" } = props;
+  return (
+    <div style={{ textAlign: textAlign }}>
+      <h1>{title}</h1>
+    </div>
+  );
+};
 
 Builder.registerComponent(Heading, {
   name: "Heading",
-  inputs: [{ name: "title", type: "text" }],
+  inputs: [
+    { name: "title", type: "text" },
+    { name: "textAlign", type: "text", placeholder: "left | center | right" },
+  ],
 });
+
 Builder.registerComponent(InputField, {
   name: "InputField",
   inputs: [
@@ -178,7 +185,7 @@ Builder.registerComponent(InputField, {
 Builder.register("insertMenu", {
   name: "My Components",
   items: [
-    { item: "ExampleCustomComponent", name: "My React Component" },
+    { item: "InputField", name: "Custom Input Field" },
     { name: "Heading", item: "Heading" },
   ],
 });
