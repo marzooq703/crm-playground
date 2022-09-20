@@ -1,6 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
 const Home = () => {
   return (
@@ -8,6 +5,9 @@ const Home = () => {
       <h1>CRM Playground</h1>
       <Link href="/create-user">
         <button>Create User</button>
+      </Link>
+      <Link href="/users-list">
+        <button>Users List</button>
       </Link>
     </>
   );
